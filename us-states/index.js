@@ -1,11 +1,13 @@
 const express = require('express');
-const getUKCounties = require('./getUKCounties');
+const getStates = require('./getUSStates');
 
 const app = express();
 
-app.get('/api/counties', async (req, res) => {
-    const counties = await getUKCounties();
-    res.json(counties);
+app.use(express.static('public'));
+
+app.get('/api/states', async (req, res) => {
+    const states = await getStates();
+    res.json(states);
 })
 
 const port = process.env.PORT || 4242;
